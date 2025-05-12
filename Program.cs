@@ -26,13 +26,19 @@ class Program
     foreach (var file in Directory.GetFiles(path))
     {
         StampaFile(file, livello + 1);
+
+        static void StampaFile(string filePath, int livello)
+    {
+        var lastWrite = File.GetLastAccessTime(filePath);
+        var diff = DateTime.Now - lastWrite;
+
+        if (diff.TotalMinutes <= 5){
+            Console.ForegroundColor = ConsoleColor.Green;
+        }
+    }
     }
 }
 
-    private static void StampaFile(string file, int v)
-    {
-        throw new NotImplementedException();
-    }
 }
 
 
